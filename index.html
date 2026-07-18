@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DXTransit for Dun Laoghaire to Palmerston House</title>
+<meta name="description" content="Direct return bus service to District X, 12 September 2026. Dun Laoghaire pickup, Palmerston House drop-off. €30 return.">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --black-soft: #141414;
+    --gold: #EAAC06;
+    --white: #f5f5f5;
+    --grey: #9a9a9a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+  }
+
+  /* Header */
+  header {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(234, 172, 6, 0.15);
+  }
+
+  .logo {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    font-size: 18px;
+  }
+
+  .logo span { color: var(--gold); }
+
+  /* Hero fills the rest of the viewport */
+  .hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 24px 0;
+  }
+
+  .hero .wrap { text-align: center; }
+
+  .badge {
+    display: inline-block;
+    background: rgba(234, 172, 6, 0.12);
+    color: var(--gold);
+    border: 1px solid rgba(234, 172, 6, 0.35);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+
+  h1 .accent { color: var(--gold); }
+
+  .hero p.lead {
+    color: var(--grey);
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto 28px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--gold);
+    color: #0a0a0a;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(234, 172, 6, 0.25);
+  }
+
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  #checkout-slot {
+    margin-top: 4px;
+  }
+
+  .checkout-status {
+    font-size: 14px;
+    color: var(--grey);
+    margin-top: 14px;
+  }
+
+  #checkout-container {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  /* Details bar */
+  .details {
+    padding: 28px 0 36px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .detail-item {
+    text-align: center;
+  }
+
+  .detail-item .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--grey);
+    margin-bottom: 6px;
+  }
+
+  .detail-item .value {
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .detail-item .value.gold { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 28px; }
+    .details-grid { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="logo">DX<span>TRANSIT</span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge">12 SEPTEMBER 2026 · 51 SEATS ONLY</div>
+      <h1>Your ride to <span class="accent">District X</span>,<br>sorted.</h1>
+      <p class="lead">A direct return coach from Dun Laoghaire to Palmerston House, with no stopovers and no stress. Just book your seat and show up.</p>
+
+      <div id="checkout-slot">
+        <button id="buy-btn" class="btn">Buy Ticket, €30</button>
+        <div id="checkout-status" class="checkout-status" style="display:none;"></div>
+        <div id="checkout-container"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="details">
+    <div class="wrap">
+      <div class="details-grid">
+        <div class="detail-item">
+          <div class="label">Date</div>
+          <div class="value">12 Sept 2026</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Pickup</div>
+          <div class="value">Dun Laoghaire</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Drop-off</div>
+          <div class="value">Palmerston House</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Price</div>
+          <div class="value gold">€30 return</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var PUBLISHABLE_KEY = "pk_test_51Ttooq2O2hPcERYGzFjwyRjBQDCsMelL2TAIICwBtV8zPnvKEFp6zsWXvvmxpfV4fWx3tnzI96hrrEt9rlu3uvRE00YfIPoWKE";
+    var stripe = Stripe(PUBLISHABLE_KEY);
+    var buyBtn = document.getElementById("buy-btn");
+    var statusEl = document.getElementById("checkout-status");
+    var containerEl = document.getElementById("checkout-container");
+
+    buyBtn.addEventListener("click", function () {
+      buyBtn.disabled = true;
+      buyBtn.textContent = "Loading...";
+      statusEl.style.display = "none";
+
+      fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quantity: 1 }),
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          if (!result.ok) {
+            if (result.data.error === "sold_out") {
+              statusEl.textContent = "All tickets are sold out.";
+            } else {
+              statusEl.textContent = result.data.error || "Something went wrong. Please try again.";
+            }
+            statusEl.style.display = "block";
+            buyBtn.style.display = "none";
+            return;
+          }
+
+          buyBtn.style.display = "none";
+
+          stripe
+            .initEmbeddedCheckout({ clientSecret: result.data.clientSecret })
+            .then(function (checkout) {
+              checkout.mount("#checkout-container");
+            });
+        })
+        .catch(function () {
+          statusEl.textContent = "Something went wrong. Please try again.";
+          statusEl.style.display = "block";
+          buyBtn.disabled = false;
+          buyBtn.textContent = "Buy Ticket, €30";
+        });
+    });
+  </script>
+
+</body>
+</html>
