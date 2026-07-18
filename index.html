@@ -37,7 +37,6 @@
     width: 100%;
   }
 
-  /* Header */
   header {
     padding: 20px 0;
     border-bottom: 1px solid rgba(234, 172, 6, 0.15);
@@ -51,7 +50,6 @@
 
   .logo span { color: var(--gold); }
 
-  /* Hero fills the rest of the viewport */
   .hero {
     flex: 1;
     display: flex;
@@ -104,18 +102,9 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
-  .btn:hover:not(:disabled) {
+  .btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 8px 24px rgba(234, 172, 6, 0.25);
-  }
-
-  .btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  #checkout-slot {
-    margin-top: 4px;
   }
 
   .checkout-status {
@@ -124,12 +113,6 @@
     margin-top: 14px;
   }
 
-  #checkout-container {
-    margin-top: 20px;
-    text-align: left;
-  }
-
-  /* Details bar */
   .details {
     padding: 28px 0 36px;
     border-top: 1px solid rgba(255,255,255,0.06);
@@ -180,11 +163,8 @@
       <h1>Your ride to <span class="accent">District X</span>,<br>sorted.</h1>
       <p class="lead">A direct return coach from Dun Laoghaire to Palmerston House, with no stopovers and no stress. Just book your seat and show up.</p>
 
-      <div id="checkout-slot">
-        <button id="buy-btn" class="btn">Buy Ticket, €30</button>
-        <div id="checkout-status" class="checkout-status" style="display:none;"></div>
-        <div id="checkout-container"></div>
-      </div>
+      <a class="btn" href="https://buy.stripe.com/bJe3co0byexTeBN5qYfjG00">Buy Ticket, €30</a>
+      <div class="checkout-status">Secure checkout powered by Stripe</div>
     </div>
   </section>
 
@@ -210,58 +190,6 @@
       </div>
     </div>
   </section>
-
-  <script src="https://js.stripe.com/v3/"></script>
-  <script>
-    var PUBLISHABLE_KEY = "pk_test_51Ttooq2O2hPcERYGzFjwyRjBQDCsMelL2TAIICwBtV8zPnvKEFp6zsWXvvmxpfV4fWx3tnzI96hrrEt9rlu3uvRE00YfIPoWKE";
-    var stripe = Stripe(PUBLISHABLE_KEY);
-    var buyBtn = document.getElementById("buy-btn");
-    var statusEl = document.getElementById("checkout-status");
-    var containerEl = document.getElementById("checkout-container");
-
-    buyBtn.addEventListener("click", function () {
-      buyBtn.disabled = true;
-      buyBtn.textContent = "Loading...";
-      statusEl.style.display = "none";
-
-      fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quantity: 1 }),
-      })
-        .then(function (res) {
-          return res.json().then(function (data) {
-            return { ok: res.ok, data: data };
-          });
-        })
-        .then(function (result) {
-          if (!result.ok) {
-            if (result.data.error === "sold_out") {
-              statusEl.textContent = "All tickets are sold out.";
-            } else {
-              statusEl.textContent = result.data.error || "Something went wrong. Please try again.";
-            }
-            statusEl.style.display = "block";
-            buyBtn.style.display = "none";
-            return;
-          }
-
-          buyBtn.style.display = "none";
-
-          stripe
-            .initEmbeddedCheckout({ clientSecret: result.data.clientSecret })
-            .then(function (checkout) {
-              checkout.mount("#checkout-container");
-            });
-        })
-        .catch(function () {
-          statusEl.textContent = "Something went wrong. Please try again.";
-          statusEl.style.display = "block";
-          buyBtn.disabled = false;
-          buyBtn.textContent = "Buy Ticket, €30";
-        });
-    });
-  </script>
 
 </body>
 </html>
