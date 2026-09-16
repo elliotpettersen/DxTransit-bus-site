@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DXTransit | Party Bus Hire Dublin</title>
 <meta name="description" content="DXTransit is a Dublin-based party bus booking service. 28, 33, 36, 38 and 41 seater buses. Message our team on WhatsApp for a quote.">
-<link rel="icon" type="image/png" href="data:image/png;base64,[LOGO IMAGE DATA]">
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
@@ -39,12 +39,6 @@
   header { padding: 16px 0; border-bottom: 1px solid var(--line); }
   header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .brand img { display: block; height: 64px; width: auto; }
-  .header-call {
-    font-weight: 700; font-size: 15px; color: var(--yellow);
-    border: 2px solid var(--yellow); border-radius: 999px; padding: 8px 18px;
-    white-space: nowrap; transition: background .15s, color .15s;
-  }
-  .header-call:hover { background: var(--yellow); color: var(--black); }
 
   /* Hero */
   .hero { flex: 1; display: flex; align-items: center; padding: 64px 0 56px; text-align: center; }
@@ -58,13 +52,6 @@
     margin-bottom: 28px;
   }
   h1 .y { color: var(--yellow); }
-  .number {
-    display: inline-block; font-weight: 900; font-size: clamp(40px, 8vw, 84px);
-    line-height: 1; color: var(--black); background: var(--yellow);
-    padding: 14px 32px; border-radius: 14px; letter-spacing: 0.02em;
-    transform: rotate(-2deg); transition: transform .15s;
-  }
-  .number:hover { transform: rotate(0deg) scale(1.02); }
   .lead { color: var(--grey); font-size: 18px; max-width: 560px; margin: 34px auto 0; }
   .lead strong { color: var(--white); }
 
@@ -91,8 +78,7 @@
   .info h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
   .info p { color: var(--grey); font-size: 15px; }
 
-  footer { padding-bottom: 80px !important; border-top: 1px solid var(--line); padding: 24px 0; color: var(--grey); font-size: 14px; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0 80px; color: var(--grey); font-size: 14px; }
   footer a { color: var(--yellow); font-weight: 700; }
 
   /* WhatsApp */
@@ -113,7 +99,6 @@
     box-shadow: 0 6px 22px rgba(0,0,0,0.5);
   }
   .wa-float svg { width: 24px; height: 24px; }
-  @media (max-width: 480px) { .wa-btn { font-size: 18px; padding: 16px 24px; } .wa-btn svg { width: 30px; height: 30px; } }
 
   @media (max-width: 760px) {
     .fleet { grid-template-columns: repeat(2, 1fr); }
@@ -123,9 +108,9 @@
   @media (max-width: 480px) {
     .wrap { padding: 0 16px; }
     .brand img { height: 48px; }
-    .header-call { font-size: 13px; padding: 7px 14px; }
     .hero { padding: 44px 0 40px; }
-    .number { padding: 12px 20px; }
+    .wa-btn { font-size: 18px; padding: 16px 24px; }
+    .wa-btn svg { width: 30px; height: 30px; }
     .bus .seats { font-size: 44px; }
   }
 </style>
@@ -135,7 +120,7 @@
   <header>
     <div class="wrap">
       <a class="brand" href="/" aria-label="DXTransit home">
-        <img src="data:image/png;base64,[LOGO IMAGE DATA]" alt="DXTransit">
+        <img src="logo.png" alt="DXTransit">
       </a>
     </div>
   </header>
@@ -144,8 +129,10 @@
     <div class="wrap">
       <div class="eyebrow">Party bus booking · Dublin</div>
       <h1>Message our team<br>for a <span class="y">quote</span></h1>
-            <div><a class="wa-btn" href="https://wa.me/qr/FY5FRMQTIYY2I1" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.5 1.8 6.5L3 29l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.5c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.3 9.9 10.1 5.2 16 5.2s10.7 4.7 10.7 10.6S21.9 26.5 16 26.5zm5.9-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5.1.8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>Chat with us on WhatsApp</a>
-      <span class="wa-note">Opens WhatsApp directly</span></div>
+      <div>
+        <a class="wa-btn" href="https://wa.me/qr/FY5FRMQTIYY2I1" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.5 1.8 6.5L3 29l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.5c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.3 9.9 10.1 5.2 16 5.2s10.7 4.7 10.7 10.6S21.9 26.5 16 26.5zm5.9-7.9c-.3-.2-1.900-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5.1.8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>Chat with us on WhatsApp</a>
+        <span class="wa-note">Opens WhatsApp directly</span>
+      </div>
       <p class="lead">DXTransit is a <strong>party bus booking service based in Dublin</strong>. Pre-drinks, birthdays, college balls and nights out: tell us where and when, and we'll sort the bus.</p>
     </div>
   </section>
